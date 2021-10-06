@@ -82,7 +82,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Nitro5/Documents/Code/ADS/ac++/main.cpp">
+		<Unit filename="C:/Users/Nitro5/Documents/Code/ADS/ac++/aksh/inf/lab1/h.cpp">
 			<Option target="ac__"/>
 		</Unit>
 		<Unit filename="C:/Users/Nitro5/Documents/Code/ADS/ac++/CMakeLists.txt">

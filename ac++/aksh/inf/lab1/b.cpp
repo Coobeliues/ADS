@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 
 using namespace std;
 
@@ -14,32 +13,37 @@ public:
     }
 };
 
-class Stack {
+class Queue {
 public:
-    Node *top;
+    Node *front, *tail;
     int sz;
 
-    Stack() {
-        top = NULL;
+    Queue() {
+        front = NULL;
+        tail = NULL;
         sz = 0;
     }
 
     void push(int data) {
-        Node *new_node = new Node(data);
-        new_node->next = top;
-        top = new_node;
+        Node *node = new Node(data);
+        if (sz == 0) {
+            front = tail = node;
+        } else {
+            tail->next = node;
+            tail = node;
+        }
         sz++;
     }
 
     void pop() {
-        if (top != NULL) {
-            top = top->next;
+        if (front != NULL) {
+            front = front->next;
             sz--;
         }
     }
 
     bool empty() {
-        return (top == NULL);
+        return (front == NULL && tail == NULL);
     }
 
     int size() {
@@ -48,7 +52,7 @@ public:
 };
 
 int main() {
-    Stack *st = new Stack();
+    Queue *st = new Queue();
     string s;
 
     while (s!="exit"){
@@ -59,17 +63,16 @@ int main() {
             cin>>n;
             st->push(n);
             cout<<"ok"<<endl;
-
         }
         else if (s == "pop"){
             if(st->size()!=0) {
-                cout<<st->top->data<<endl;
+                cout << st->front->data << endl;
                 st->pop();
             }
             else cout<<"error"<<endl;
         }
-        else if (s == "back"){
-            if (st->size()!=0) cout<<st->top->data<<endl;
+        else if (s == "front"){
+            if (st->size()!=0) cout << st->front->data << endl;
             else cout<<"error"<<endl;
         }
         else if (s == "clear") {
@@ -77,7 +80,7 @@ int main() {
             while (st->size()>0){
                 st->pop();
             }
-
+            
         }
     }
     cout<<"bye";
